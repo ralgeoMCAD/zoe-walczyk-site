@@ -1,0 +1,171 @@
+/* ---------- Page-level typography ---------- */
+
+h1 {
+  text-align: center;
+  color: #303CD9;
+  font-family: "Jacquard 24", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  font-size: 8vw;
+}
+
+h2 {
+  text-align: center;
+}
+
+.placeholder {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* ---------- Navigation ---------- */
+
+.navbar {
+  list-style: none;
+  background-color: #D1E0FF;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1vw;
+}
+
+.navbar a {
+  color: #2F5091;
+  text-decoration: none;
+  padding: 15px;
+  display: block;
+  text-align: center;
+  font-size: 17px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background-color: #7D9CDB;
+  color: #18386E;
+}
+
+.navbar .icon {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a:not(:first-child) {
+    display: none;
+  }
+
+  .navbar .icon {
+    display: block;
+    float: right;
+  }
+
+  .navbar.responsive {
+    position: relative;
+    flex-direction: column;
+  }
+
+  .navbar.responsive a,
+  .navbar.responsive .icon {
+    display: block;
+    text-align: left;
+    float: none;
+  }
+
+  .navbar.responsive .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5%, 45%));
+  grid-template-rows: repeat(auto-fit, minmax(5%, 45%));
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.column {
+  display: grid;
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* ---------- Lightbox ---------- */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox.is-open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.lightbox button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  z-index: 1001;
+}
+
+.lightbox .prev,
+.lightbox .next {
+  height: 50px;
+  width: 50px;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox .prev {
+  left: 20px;
+}
+
+.lightbox .next {
+  right: 20px;
+}
+
+.lightbox .close {
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+}

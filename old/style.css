@@ -1,0 +1,181 @@
+/* ============================================================
+   Styles from the CodePen "CSS" panel
+   (https://codepen.io/yyihttuw-the-typescripter/pen/MYjdMov)
+   ============================================================ */
+
+h1{
+  text-align: center;
+  color:#303CD9;
+
+
+  font-family: "Jacquard 24";
+  font-weight: 400;
+  font-style: normal;
+  padding: 0px;
+  margin-bottom:0px;
+  margin-top:0px;
+
+}
+
+h3{
+  text-align: center;
+}
+
+.navbar {
+  list-style-type: none;
+  background-color:#D1E0FF;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.navbar a{
+  color: #2F5091;
+  text-decoration: none;
+  padding: 15px;
+  display:block;
+  text-align:center;
+  font-size: 17px
+}
+
+.navbar a:hover{
+  background-color:#7D9CDB;
+ color:#18386E;
+}
+
+.navbar a.active {
+  background-color:#7D9CDB;
+ color:#18386E;
+}
+
+.navbar .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a:not(:first-child) {display: none;}
+  .navbar a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+/* General body styling- start of the lighbox */
+
+
+.main {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+}
+
+.gallery {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5%, 45%));
+  grid-template-rows: repeat(auto-fit, minmax(5%, 45%));
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+
+}
+
+.column {
+  display : grid;
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.gallery img:hover {
+  transform: scale(1.03);
+}
+/* Lightbox styling */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+.lightbox .prev,
+.lightbox .next {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1001;
+}
+.lightbox .prev {
+  left: 20px;
+}
+.lightbox .next {
+  right: 20px;
+}
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: #ffffff;
+  background: none;
+  cursor: pointer;
+  border: none;
+  z-index: 1001;
+}
+
+/* ============================================================
+   Inline <style> block that was inside the HTML panel
+   ============================================================ */
+
+h1 {
+  font-size: 8vw;
+}
+
+.navbar {
+  font-size: 1vw;
+}

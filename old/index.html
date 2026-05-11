@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Zoe Walczyk </title>
+  <link href="style.css" rel="stylesheet" type="text/css" media="all">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <h1> ZOE WALCZYK </h1>
+  <!--navbar -->
+
+  <div class="navbar" id="mynavbar">
+    <a href="index.html">Illustration</a>
+    <a href="child_ill.html">Children's Illustration</a>
+    <a href="design.html">Design</a>
+    <a href="comics.html">Comics</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+  <main>
+    <h3> Illustration </h3>
+
+    <!-- Image Gallery -->
+    <div class="gallery">
+
+      <div class="column">
+        <img src="https://zoewalczyk.neocities.org/ART/Untitled_Artwork%201%20(1).jpg" alt="Image-1" data-index="0" />
+        <img src="https://zoewalczyk.neocities.org/ART/Untitled_Artwork%20(3).jpg" alt="Image-2" data-index="1" />
+        <img src="https://zoewalczyk.neocities.org/ART/Untitled_Artwork%20(6).jpg" alt="Image-3" data-index="2" />
+      </div>
+
+      <div class="column">
+        <img src="https://zoewalczyk.neocities.org/ART/Untitled_Artwork%202%20(1).jpg" alt="Image-4" data-index="3" />
+        <img src="https://zoewalczyk.neocities.org/ART/Untitled_Artwork%20(8).jpg" alt="Image-5" data-index="4" />
+        <img src="https://zoewalczyk.neocities.org/ART/Untitled_Artwork%20(9).jpg" alt="Image-6" data-index="5" />
+      </div>
+    </div>
+
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+      <button class="close">&times;</button>
+      <button class="prev">&#8249;</button>
+      <img src="" alt="lightbox image" />
+      <button class="next">&#8250;</button>
+    </div>
+
+    <script>
+      const gallery = document.querySelector(".gallery");
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      const closeBtn = lightbox.querySelector(".close");
+      const prevBtn = lightbox.querySelector(".prev");
+      const nextBtn = lightbox.querySelector(".next");
+      let currentIndex = 0;
+      const images = Array.from(gallery.querySelectorAll("img"));
+      // Open Lightbox
+      gallery.addEventListener("click", (e) => {
+        if (e.target.tagName === "IMG") {
+          currentIndex = parseInt(e.target.dataset.index, 10);
+          updateLightbox();
+          lightbox.style.display = "flex";
+        }
+      });
+      // Close Lightbox
+      closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+      // Navigate to Previous Image
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateLightbox();
+      });
+      // Navigate to Next Image
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateLightbox();
+      });
+      // Update Lightbox Image
+      function updateLightbox() {
+        const imgSrc = images[currentIndex].src;
+        lightboxImage.src = imgSrc;
+        lightboxImage.alt = images[currentIndex].alt;
+      }
+      // Close Lightbox on Outside Click
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+
+
+      /* Nav script - Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+      function myFunction() {
+        var x = document.getElementById("mynavbar");
+        if (x.className === "navbar") {
+          x.className += " responsive";
+        } else {
+          x.className = "navbar";
+        }
+      }
+    </script>
+
+  </main>
+
+</body>
+</html>
