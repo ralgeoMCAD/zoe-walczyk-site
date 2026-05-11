@@ -53,65 +53,98 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  font: inherit;
   color: inherit;
+  padding: 14px 16px;
+  line-height: 0;
 }
+
+/* Pure-CSS hamburger: three bars drawn from the span and its
+   ::before / ::after pseudo-elements. Uses currentColor so it
+   matches the navbar link color and adapts to hover. */
+.navbar .icon .bars,
+.navbar .icon .bars::before,
+.navbar .icon .bars::after {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.navbar .icon .bars {
+  position: relative;
+}
+
+.navbar .icon .bars::before,
+.navbar .icon .bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.navbar .icon .bars::before { top: -9px; }
+.navbar .icon .bars::after  { top:  9px; }
 
 @media screen and (max-width: 600px) {
-  .navbar a:not(:first-child) {
-    display: none;
+  /* The first row holds the page name (left) and the hamburger (right).
+     `flex-wrap` lets the rest of the links drop onto their own rows below
+     when the menu is opened, without disturbing the first row. */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .navbar .icon {
+  /* `order` keeps the icon visually right of the first link
+     even though more links come between them in the DOM. */
+  .navbar a:first-child { order: 0; }
+  .navbar .icon         { order: 1; display: block; }
+  .navbar a:not(:first-child) { order: 2; display: none; }
+
+  /* Open state: extra links appear and each one takes a full row,
+     stacking below the first row. */
+  .navbar.responsive a:not(:first-child) {
     display: block;
-    float: right;
-  }
-
-  .navbar.responsive {
-    position: relative;
-    flex-direction: column;
-  }
-
-  .navbar.responsive a,
-  .navbar.responsive .icon {
-    display: block;
+    flex-basis: 100%;
     text-align: left;
-    float: none;
-  }
-
-  .navbar.responsive .icon {
-    position: absolute;
-    top: 0;
-    right: 0;
   }
 }
 
-/* ---------- Gallery ---------- */
+/* ---------- Gallery ----------
+   Justified rows: every image shares one base height, but each
+   image's `flex-grow: 1` lets it expand to fill leftover space
+   in its row so the row edges line up. `object-fit: cover` keeps
+   images from distorting — they crop slightly instead.
+   Landscape images still take more horizontal space than portraits
+   because their natural (basis) width at the target height is wider.
+   The `::after` pseudo with a huge flex-grow soaks up extra space
+   in the LAST row so a short final row doesn't over-stretch. */
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(5%, 45%));
-  grid-template-rows: repeat(auto-fit, minmax(5%, 45%));
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  width: 100%;
-  justify-content: center;
-}
-
-.column {
-  display: grid;
-  gap: 10px;
+  padding: 10px;
 }
 
 .gallery img {
-  width: 100%;
-  height: auto;
+  height: clamp(180px, 22vw, 260px);
+  flex: 1 1 auto;
+  min-width: 120px;
+  object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  vertical-align: middle;
 }
 
 .gallery img:hover {
   transform: scale(1.03);
+}
+
+.gallery::after {
+  content: "";
+  flex-grow: 999;
 }
 
 /* ---------- Lightbox ---------- */
